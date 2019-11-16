@@ -108,12 +108,12 @@ class QuerySelectField(SelectFieldBase):
             yield (pk, self.get_label(obj), obj == self.data)
 
     def process_formdata(self, valuelist):
+        valuelist = list(valuelist)
         if valuelist:
             if self.allow_blank and valuelist[0] == '__None':
                 self.data = None
             else:
                 self._data = None
-                valuelist = list(valuelist)
                 self._formdata = valuelist[0]
 
     def pre_validate(self, form):
